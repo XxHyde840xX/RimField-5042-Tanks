@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Defs>	
+	<Vehicles.VehicleDef ParentName="MO_BaseVehicle">
+		<defName>M1A5_MainBattleTank</defName>
+		<label>M1A5 MBT</label>
+		<description>The sturdy and durable main battle tank has been in service for the US military for half a century. Equipped with a 120mm stable smooth bore main gun and a 1500 horsepower gas turbine engine. The whispering of death is still in its golden age.</description>
+		<buildDef>M1A5_MainBattleTank_Blueprint</buildDef>
+		<graphicData>
+			<texPath>Vehicles/M1A5/M1A5</texPath>
+			<drawSize>(7,9)</drawSize>
+			<color>(155, 155, 155)</color>
+			<colorTwo>(65, 75, 80)</colorTwo>
+			<colorThree>(45, 50, 45)</colorThree>
+		</graphicData>
+		<size>(4,7)</size>
+		<fillPercent>1</fillPercent>
+		<vehicleCategory>Combat</vehicleCategory>
+		<statBases>
+			<ArmorRating_Blunt>0.45</ArmorRating_Blunt>
+			<ArmorRating_Sharp>0.8</ArmorRating_Sharp>
+			<Flammability>0</Flammability>
+			<MarketValue>5000</MarketValue>
+		</statBases>
+		<vehicleStats>
+			<Mass>3000</Mass>
+			<MoveSpeed>11</MoveSpeed>
+			<CargoCapacity>300</CargoCapacity>
+			<RepairRate>2.5</RepairRate>
+			<AccelerationRate>0.12</AccelerationRate>
+		</vehicleStats>
+		<race>
+			<baseBodySize>8</baseBodySize>
+		</race>	
+		<properties>
+			<customRoadCosts AssignDefaults = "0.4"/>
+			<worldSpeedMultiplier>1</worldSpeedMultiplier>
+			<winterSpeedMultiplier>1</winterSpeedMultiplier>
+			<vehicleJobLimitations>
+				<li>(RepairVehicle, 4)</li>
+			</vehicleJobLimitations>
+			<roles>
+				<li>
+					<key>driver</key>
+					<label>driver</label>
+					<slots>1</slots>
+					<slotsToOperate>1</slotsToOperate>				
+					<handlingTypes>
+						<li>Turret</li>
+						<li>Movement</li>
+					</handlingTypes>
+					<turretIds>
+						<li>mainTurret</li>
+					</turretIds>
+				</li>
+				<li>
+					<key>loaders</key>
+					<label>loaders</label>
+					<slots>1</slots>
+					<slotsToOperate>1</slotsToOperate>			
+					<handlingTypes>Turret</handlingTypes>
+					<turretIds>
+						<li>mainTurret</li>
+					</turretIds>
+				</li>
+				<li>
+					<key>tankcommander</key>
+					<label>tankcommander</label>
+					<slots>1</slots>
+					<slotsToOperate>1</slotsToOperate>			
+					<handlingTypes>Turret</handlingTypes>
+					<turretIds>
+						<li>topTurret</li>
+						<li>mortarTurret</li>
+					</turretIds>
+				</li>
+			</roles>
+		</properties>	
+		<components>
+		<!--内部驱动部件-->
+			<li><!--Engine 100-->
+				<key>Engine</key>
+				<label>turbine engine</label>
+				<health>450</health>
+				<priorityStatEfficiency>true</priorityStatEfficiency>
+				<categories><li>MoveSpeed</li></categories>
+				<depth>Internal</depth>		
+				<reactors>
+					<li Class = "Vehicles.Reactor_Explosive">
+						<indicator>VF_Explosive</indicator>
+						<chance>0</chance>
+						<radius>3</radius>
+						<damageDef>Bomb</damageDef>
+					</li>
+				</reactors>			
+				<hitbox>
+					<cells>
+						<li>(0, -2)</li>
+						<li>(1, -2)</li>
+					</cells>
+				</hitbox>				
+			</li>		
+			<li><!-- fuel tank 100-->
+				<key>FuelTank</key>
+				<label>FuelTank</label>
+				<health>370</health>
+				<depth>Internal</depth>			
+				<reactors><li Class = "Vehicles.Reactor_FuelLeak"/></reactors>			
+				<hitbox><cells><li>(0, -2)</li></cells></hitbox>
+			</li>
+			<li><!-- Gearbox 50-->
+				<key>Gearbox</key>
+				<label>Gearbox</label>
+				<health>300</health>
+				<depth>Internal</depth>
+				<categories><li>MoveSpeed</li></categories>	
+				<hitbox><cells><li>(1, -2)</li></cells></hitbox>			
+			</li>
+			<li><!-- AmmoRack 50-->
+				<key>AmmoRack</key>
+				<label>AmmoRack</label>
+				<health>300</health>
+				<depth>Internal</depth>
+				<reactors>
+					<li Class = "Vehicles.Reactor_Explosive">
+						<indicator>VF_Explosive</indicator>
+						<chance>0.01</chance>
+						<radius>5</radius>
+						<damageDef>Bomb</damageDef>
+					</li>
+				</reactors>	
+			</li>
+			<li><!-- transmission shaft 40 -->
+				<key>TransmissionShaft</key>
+				<label>TransmissionShaft</label>
+				<health>100</health>
+				<depth>Internal</depth>
+			</li>			
+		<!--外部驱动部件-->		
+			<li><!-- LeftTrack 150-->
+				<key>LeftTrack</key>
+				<label>LeftTrack</label>
+				<health>250</health>
+				<depth>External</depth>
+				<categories><li>MoveSpeed</li></categories>
+				<tags><li>Wheel</li></tags>
+				<hitWeight>2</hitWeight>
+				<hitbox>
+					<fallthrough>false</fallthrough>
+					<side>Left</side>
+				</hitbox>
+			</li>
+			<li><!-- RightTrack 150-->
+				<key>RightTrack</key>
+				<label>RightTrack</label>
+				<health>250</health>
+				<depth>External</depth>
+				<categories><li>MoveSpeed</li></categories>	
+				<tags><li>Wheel</li></tags>
+				<hitWeight>2</hitWeight>
+				<hitbox>
+					<fallthrough>false</fallthrough>
+					<side>Right</side>
+				</hitbox>
+			</li>
+			<li><!-- LeftRoadWheels 100-->
+				<key>LeftRoadWheels</key>
+				<label>LeftRoadWheels</label>
+				<health>200</health>
+				<depth>External</depth>
+				<categories><li>MoveSpeed</li></categories>				
+				<tags><li>Wheel</li></tags>		
+				<hitbox>
+					<fallthrough>false</fallthrough>
+					<side>Left</side>
+				</hitbox>
+			</li>
+			<li><!-- RightRoadWheels 100-->
+				<key>RightRoadWheels</key>
+				<label>RightRoadWheels</label>
+				<health>200</health>
+				<depth>External</depth>
+				<categories><li>MoveSpeed</li></categories>				
+				<tags><li>Wheel</li></tags>		
+				<hitbox>
+					<fallthrough>false</fallthrough>
+					<side>Right</side>
+				</hitbox>
+			</li>
+			<li><!-- LeftDriveSprocket 75-->
+				<key>LeftDriveSprocket</key>
+				<label>LeftDriveSprocket</label>
+				<health>125</health>
+				<depth>External</depth>
+				<categories><li>MoveSpeed</li></categories>				
+				<tags><li>Wheel</li></tags>		
+				<hitbox>
+					<fallthrough>false</fallthrough>
+					<cells><li>(-1, -3)</li></cells><!--左前-->
+				</hitbox>
+			</li>
+			<li><!-- RightDriveSprocket 75-->
+				<key>RightDriveSprocket</key>
+				<label>RightDriveSprocket</label>
+				<health>125</health>
+				<depth>External</depth>
+				<categories><li>MoveSpeed</li></categories>				
+				<tags><li>Wheel</li></tags>		
+				<hitbox>
+					<fallthrough>false</fallthrough>
+					<cells><li>(2, -3)</li></cells><!--右前-->
+				</hitbox>
+			</li>
+			<li><!-- LeftTensionerWheel 75-->
+				<key>LeftTensionerWheel</key>
+				<label>LeftTensionerWheel</label>
+				<health>125</health>
+				<depth>External</depth>
+				<categories><li>MoveSpeed</li></categories>				
+				<tags><li>Wheel</li></tags>					
+				<hitbox>
+					<fallthrough>false</fallthrough>
+					<cells><li>(-1, 3)</li></cells><!--左后-->
+				</hitbox>
+			</li>
+			<li><!-- RightTensionerWheel 75-->
+				<key>RightTensionerWheel</key>
+				<label>RightTensionerWheel</label>
+				<health>125</health>
+				<depth>External</depth>
+				<categories><li>MoveSpeed</li></categories>				
+				<tags><li>Wheel</li></tags>				
+				<hitbox>
+					<fallthrough>false</fallthrough>
+					<cells><li>(2, 3)</li></cells><!--右后-->
+				</hitbox>
+			</li>
+		<!--外部防御部件 -->
+			<li><!-- FrontArmorPlating 200-->
+				<key>FrontArmorPlating</key>
+				<label>FrontArmorPlating</label>
+				<health>500</health>
+				<depth>External</depth>
+				<hitWeight>12</hitWeight>	
+				<armor>
+					<ArmorRating_Blunt>1.75</ArmorRating_Blunt>
+					<ArmorRating_Sharp>1.75</ArmorRating_Sharp>
+				</armor>		
+				<hitbox><side>Front</side></hitbox>
+			</li>
+			<li><!-- LeftArmorPlating 180-->
+				<key>LeftArmorPlating</key>
+				<label>LeftArmorPlating</label>
+				<health>400</health>
+				<depth>External</depth>
+				<hitWeight>10</hitWeight>		
+				<armor>
+					<ArmorRating_Blunt>0.55</ArmorRating_Blunt>
+					<ArmorRating_Sharp>0.55</ArmorRating_Sharp>
+				</armor>			
+				<hitbox><side>Left</side></hitbox>
+			</li>
+			<li><!-- RightArmorPlating 180-->
+				<key>RightArmorPlating</key>
+				<label>RightArmorPlating</label>
+				<health>400</health>
+				<depth>External</depth>
+				<hitWeight>10</hitWeight>	
+				<armor>
+					<ArmorRating_Blunt>0.55</ArmorRating_Blunt>
+					<ArmorRating_Sharp>0.55</ArmorRating_Sharp>
+				</armor>			
+				<hitbox><side>Right</side></hitbox>
+			</li>
+			<li><!-- RoofArmorPlating 150 -->
+				<key>RoofArmorPlating</key>
+				<label>RoofArmorPlating</label>
+				<health>400</health>
+				<depth>External</depth>
+				<hitWeight>5</hitWeight>
+				<armor>
+					<ArmorRating_Blunt>0.8</ArmorRating_Blunt>
+					<ArmorRating_Sharp>0.7</ArmorRating_Sharp>
+				</armor>
+			</li>
+			<li><!-- BackArmorPlating 150-->
+				<key>BackArmorPlating</key>
+				<label>BackArmorPlating</label>
+				<health>300</health>
+				<depth>External</depth>
+				<hitWeight>7</hitWeight>
+				<armor>
+					<ArmorRating_Blunt>0.5</ArmorRating_Blunt>
+					<ArmorRating_Sharp>0.4</ArmorRating_Sharp>
+				</armor>
+				<hitbox><side>Back</side></hitbox>
+			</li>
+		</components>
+
+		<comps>
+			<li Class="Vehicles.CompProperties_FueledTravel">
+				<fuelType>Chemfuel</fuelType>
+				<leakDef>Filth_Fuel</leakDef>
+				<fuelConsumptionRate>24</fuelConsumptionRate>
+				<fuelCapacity>500</fuelCapacity>
+			</li>
+			<li Class="Vehicles.CompProperties_VehicleTurrets">
+				<turrets>
+					<li>
+						<turretDef>M1A5_Tank_Turret</turretDef>
+						<renderProperties>
+							<north>(0, 0)</north>
+							<south>(0, 0)</south>
+							<east>(-0.055, 0.425)</east>
+						</renderProperties>
+						<gizmoLabel>main turret</gizmoLabel>
+						<angleRestricted/>
+						<aimPieOffset>(0, 2.55)</aimPieOffset>
+						<key>mainTurret</key>
+					</li>
+					<!--陶式-->		
+					<li>
+                        <turretDef>M1A5_TAW</turretDef>
+                        <renderProperties><!--這裡的坐標系是無視旋轉的,所以x就是恆定左右偏移-->	
+                            <north>(0.7,0.4)</north>
+                            <south>(-0.7,-0.4)</south>
+                            <east>(0.4,-0.7)</east>
+                            <west>(-0.4,0.7)</west>
+                        </renderProperties>
+                        <gizmoLabel>ATGM turret</gizmoLabel>
+                        <aimPieOffset>(0, 0)</aimPieOffset>
+                        <key>topTurret</key>
+						<drawLayer>3</drawLayer>					
+                        <parentKey>mainTurret</parentKey>
+                    </li>
+					<!--迫擊砲-->	
+					<li>
+                        <turretDef>M1A5_Mortar</turretDef>
+                        <renderProperties>
+                            <north>(-0.85,1)</north>
+                            <south>(0.85,-1)</south>
+                            <east>(1,0.85)</east>
+                            <west>(-1,-0.85)</west>
+                        </renderProperties>
+                        <gizmoLabel>mortar turret</gizmoLabel>
+                        <aimPieOffset>(0, 0)</aimPieOffset>
+                        <key>mortarTurret</key>
+						<drawLayer>2</drawLayer>					
+                        <parentKey>mainTurret</parentKey>
+                    </li>
+				</turrets>
+			</li>
+		</comps>
+	</Vehicles.VehicleDef>
+</Defs>

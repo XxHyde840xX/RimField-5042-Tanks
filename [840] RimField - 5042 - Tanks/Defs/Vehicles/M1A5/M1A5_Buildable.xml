@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Defs>
+	<Vehicles.VehicleBuildDef ParentName="VehicleBaseBuildable"><!-- 建筑形态的载具，基本上与BuildingDef相同-->
+		<defName>M1A5_MainBattleTank_Blueprint</defName>
+		<label>M1A5 MBT</label>
+		<description>The sturdy and durable main battle tank has been in service for the US military for half a century. Equipped with a 120mm stable smooth bore main gun and a 1500 horsepower gas turbine engine.The whispering of death is still in its golden age.</description>
+		<designationCategory>MO_Vehicles</designationCategory>
+		
+		<graphicData>
+			<texPath>Vehicles/M1A5/M1A5</texPath>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<drawSize>(7,9)</drawSize>
+		</graphicData>
+		
+		<statBases>
+			<MaxHitPoints>500</MaxHitPoints>
+			<WorkToBuild>20000</WorkToBuild>
+			<Flammability>0.05</Flammability>
+		</statBases>
+		
+		<size>(4, 7)</size>
+		
+		<researchPrerequisites>
+			<li>AdvancedFabrication</li>
+		</researchPrerequisites>
+		
+		<costList>
+			<EngineTurbine>1</EngineTurbine>
+			<ComponentHeavyCasting>6</ComponentHeavyCasting>
+			<ComponentWheelRoad>18</ComponentWheelRoad>
+			<ComponentIndustrial>30</ComponentIndustrial>
+			<ComponentSpacer>8</ComponentSpacer>
+			<Steel>500</Steel>
+			<Uranium>200</Uranium>
+		</costList>
+		
+		<soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
+		
+		<thingToSpawn>M1A5_MainBattleTank</thingToSpawn><!-- 建造后生成的载具Kind,这是与建筑唯一不一样的-->
+		
+		<constructionSkillPrerequisite>6</constructionSkillPrerequisite>
+	</Vehicles.VehicleBuildDef>
+</Defs>

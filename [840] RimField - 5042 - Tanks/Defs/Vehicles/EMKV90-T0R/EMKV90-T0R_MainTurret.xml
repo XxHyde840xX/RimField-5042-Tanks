@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Defs>
+	
+	<Vehicles.VehicleTurretDef ParentName="MO_BaseTurret">
+		<defName>EMKV90-TOR_Tank_Turret</defName>
+		<label>main turret</label>
+		<!-- 砲塔的渲染顯示 -->
+		<graphicData>
+			<texPath>Vehicles/EMKV90-TOR/EMKV90-TOR_Turret_Railgun</texPath>
+			<drawSize>(9,9)</drawSize>
+		</graphicData>
+		<!-- 彈藥與裝填容量相關 -->
+		<reloadTimer>4.5</reloadTimer>
+		<magazineCapacity>1</magazineCapacity>
+		<chargePerAmmoCount>5</chargePerAmmoCount>
+		<genericAmmo>true</genericAmmo>
+		<ammunition>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</ammunition>
+		<!-- 射程與射界相關 -->
+		<minRange>3</minRange>
+		<maxRange>200</maxRange>
+		<rotationSpeed>1</rotationSpeed>
+		<!-- 射擊相關 -->
+		<warmUpTimer>2.1</warmUpTimer>
+		<shotSound>TOR_fire</shotSound>
+		<reloadSound>Artillery_ShellLoaded</reloadSound>
+		<projectile>Bullet_HEShell</projectile>
+		<projectileOffset>6</projectileOffset>		<!-- 出膛前后偏移，主要是能讓子彈能從炮口飛出去 -->
+		<projectileShifting>							<!-- 出膛左右偏移，多砲管可以根據list來回切 -->
+			<!-- <li>-1</li> -->
+			<li>0</li>
+		  </projectileShifting>
+		<!-- 炮口製退動畫 -->
+		<recoil>
+			<distanceTotal>0.15</distanceTotal>
+			<distancePerTick>0.05</distancePerTick>
+			<speedMultiplierPostRecoil>0.1</speedMultiplierPostRecoil>
+		</recoil>
+		<!-- 射擊模式 -->
+		<fireModes>
+			<li>
+				<shotsPerBurst>1</shotsPerBurst>
+				<ticksBetweenBursts>1</ticksBetweenBursts>
+				<spreadRadius>4</spreadRadius>
+				<label>Single Shot</label>
+				<texPath>UI/Gizmos/FireRate_Single</texPath>
+			</li>
+		</fireModes>
+		<motes>
+			<li>
+				<cycles>1</cycles>
+				<moteDef>Mote_CannonPlume</moteDef>
+				<animationType>Reset</animationType>
+			</li>
+		</motes>
+	</Vehicles.VehicleTurretDef>
+
+	<ThingDef ParentName="BaseBullet">
+		<defName>Bullet_HEShell</defName>
+		<label>high-explosive shell</label>
+		  <thingClass>Projectile_Explosive</thingClass>
+		<graphicData>
+		  <texPath>Things/Projectile/Bullet_Big</texPath>
+		  <graphicClass>Graphic_Single</graphicClass>
+		  <drawSize>2</drawSize>
+		</graphicData>
+		<projectile>
+			<damageDef>SP_Bomb</damageDef>
+			<damageAmountBase>400</damageAmountBase>
+			<armorPenetrationBase>0.75</armorPenetrationBase>
+			<speed>175</speed>
+			<explosionRadius>2.2</explosionRadius>
+			<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+			<soundExplode>Explosion_GiantBomb</soundExplode>
+			<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+			<soundAmbient>MortarRound_Ambient</soundAmbient>
+		</projectile>
+	</ThingDef>
+
+	<Vehicles.VehicleTurretDef ParentName="MO_BaseTurret">
+		<defName>EMKV90-TOR_CoaxialMG_Turret</defName>
+		<label>coaxial machine-gun</label>
+		<!-- 砲塔的渲染顯示 -->
+		<graphicData>
+			<texPath>Empty</texPath>
+			<drawSize>(1,1)</drawSize>
+		</graphicData>
+		<!-- <uiIconPath>Soviet/DTM_Icon</uiIconPath> -->
+		<!-- 彈藥與裝填容量相關 -->
+		<reloadTimer>4</reloadTimer>
+		<magazineCapacity>60</magazineCapacity>
+		<chargePerAmmoCount>1</chargePerAmmoCount>
+		<genericAmmo>true</genericAmmo>
+		<ammunition>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</ammunition>
+		<!-- 射程與射界相關 -->
+		<minRange>2</minRange>
+		<maxRange>45</maxRange>
+		<rotationSpeed>1.95</rotationSpeed>	
+		<!-- 射擊相關 -->
+		<warmUpTimer>1.5</warmUpTimer>
+		<shotSound>GunShotA</shotSound>
+		<projectile>EMKV90-TOR_CoaxialMG_Bullet</projectile>
+		<projectileOffset>1.1</projectileOffset>		<!-- 出膛前后偏移，主要是能讓子彈能從炮口飛出去 -->
+		<projectileShifting>							<!-- 出膛左右偏移，多砲管可以根據list來回切 -->
+			<!-- <li>-1</li> -->
+			<li>0</li>
+		  </projectileShifting>
+		<!-- 炮口製退動畫 -->
+		<recoil>
+			<distanceTotal>0.15</distanceTotal>
+			<distancePerTick>0.05</distancePerTick>
+			<speedMultiplierPostRecoil>0.1</speedMultiplierPostRecoil>
+		</recoil>
+		<!-- 射擊模式 -->
+		<fireModes>
+			<li>
+				<shotsPerBurst>4</shotsPerBurst>
+				<ticksBetweenShots>6</ticksBetweenShots>
+				<ticksBetweenBursts>60</ticksBetweenBursts>
+				<label>Burst</label>
+				<texPath>UI/Gizmos/FireRate_Burst</texPath>
+			</li>
+		</fireModes>
+	</Vehicles.VehicleTurretDef>
+
+	<ThingDef ParentName="BaseBullet">
+		<defName>EMKV90-TOR_CoaxialMG_Bullet</defName>
+		<label>coaxial machine-gun bullet</label>
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Small</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<shaderType>TransparentPostLight</shaderType>
+		</graphicData>
+		<projectile>
+			<damageDef>Bullet</damageDef>
+      		<damageAmountBase>12</damageAmountBase>
+      		<armorPenetrationBase>0.75</armorPenetrationBase>
+     		<speed>120</speed>
+		</projectile>
+	</ThingDef>
+
+	<Vehicles.VehicleTurretDef ParentName="MO_BaseTurret">
+		<defName>EMKV90-TOR_EMPLauncher_Turret</defName>
+		<label>EMP launcher</label>
+		<!-- 砲塔的渲染顯示 -->
+		<graphicData>
+			<texPath>Empty</texPath>
+			<drawSize>(1,1)</drawSize>
+		</graphicData>
+		<!-- <uiIconPath>Soviet/DTM_Icon</uiIconPath> -->
+		<!-- 彈藥與裝填容量相關 -->
+		<reloadTimer>4</reloadTimer>
+		<magazineCapacity>4</magazineCapacity>
+		<chargePerAmmoCount>1</chargePerAmmoCount>
+		<genericAmmo>true</genericAmmo>
+		<ammunition>
+			<thingDefs>
+				<li>Steel</li>
+			</thingDefs>
+		</ammunition>
+		<!-- 射程與射界相關 -->
+		<minRange>2</minRange>
+		<maxRange>200</maxRange>
+		<rotationSpeed>1.95</rotationSpeed>	
+		<!-- 射擊相關 -->
+		<warmUpTimer>1.5</warmUpTimer>
+		<shotSound>Shot_IncendiaryLauncher</shotSound>
+		<projectile>Bullet_Shell_EMP</projectile>
+		<projectileOffset>1.1</projectileOffset>		<!-- 出膛前后偏移，主要是能讓子彈能從炮口飛出去 -->
+		<projectileShifting>							<!-- 出膛左右偏移，多砲管可以根據list來回切 -->
+			<!-- <li>-1</li> -->
+			<li>0</li>
+		  </projectileShifting>
+		<!-- 炮口製退動畫 -->
+		<recoil>
+			<distanceTotal>0.15</distanceTotal>
+			<distancePerTick>0.05</distancePerTick>
+			<speedMultiplierPostRecoil>0.1</speedMultiplierPostRecoil>
+		</recoil>
+		<!-- 射擊模式 -->
+		<fireModes>
+			<li>
+				<shotsPerBurst>1</shotsPerBurst>
+				<ticksBetweenShots>30</ticksBetweenShots>
+				<ticksBetweenBursts>60</ticksBetweenBursts>
+				<label>Burst</label>
+				<texPath>UI/Gizmos/FireRate_Burst</texPath>
+			</li>
+		</fireModes>
+	</Vehicles.VehicleTurretDef>
+	
+</Defs>
