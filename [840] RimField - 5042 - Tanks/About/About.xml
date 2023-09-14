@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
-	<name>RimField5042 Tanks</name>
+	<name>RimField5042 - Tanks</name>
 	<author>mo/XxHyde840xX</author>
 	<packageId>840.MO.RimField5042</packageId>
 	<description>Rimfield Tanks - Chopped out by XxHyde840xX.</description>
@@ -19,9 +19,15 @@
 			<displayName>Engine Industries</displayName>
 			<steamWorkshopUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=3009527756</steamWorkshopUrl>
 		</li>
+		<li>
+			<packageId>OskarPotocki.VanillaVehiclesExpanded</packageId>
+			<displayName>Vanilla Vehicles Expanded</displayName>
+			<steamWorkshopUrl>https://steamcommunity.com/workshop/filedetails/?id=3014906877</steamWorkshopUrl>
+		</li>
 	</modDependencies>
 	<loadAfter>
 		<li>SmashPhil.VehicleFramework</li>
 		<li>Aoba.Motorization.Engine</li>
+		<li>OskarPotocki.VanillaVehiclesExpanded</li>
   	</loadAfter>
 </ModMetaData>
